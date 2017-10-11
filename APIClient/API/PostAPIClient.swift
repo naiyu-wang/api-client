@@ -8,8 +8,10 @@
 
 // MARK: - PostAPIClient
 
+import Hydra
+
 public protocol PostAPIClient {
     
-    func readPost(completion: @escaping (_ result: HTTPResult<Post>) -> Void)
+    func readPost() -> Promise<Post>
     
 }

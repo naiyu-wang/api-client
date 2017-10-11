@@ -8,56 +8,56 @@
 
 // MARK: - PostAPIClient
 
+import Hydra
+
 extension APIClient: PostAPIClient {
     
-    public func readPost(completion: @escaping (HTTPResult<Post>) -> Void) {
+    public func readPost() -> Promise<Post> {
         
-        do {
-        
-            let endpoint = try router.makeURLRequest()
+        let promise: Promise<Post> = Promise { fulfill, reject, _ in
             
-            httpClient.request(endpoint) { result in
+            do {
                 
-                switch result {
+                let endpoint = try self.router.makeURLRequest()
+                
+                self.httpClient.request(endpoint) { result in
                     
-                case .success(let json):
-                    
-                    do {
+                    switch result {
                         
-                        let post = try Post(json: json)
+                    case .success(let json):
                         
-                        completion(
-                            .success(post)
-                        )
+                        do {
+                            
+                            let post = try Post(json: json)
+                            
+                            fulfill(post)
+                            
+                        }
+                        catch {
+                            
+                            reject(error)
+                            
+                        }
+                        
+                    case .failure(let error):
+                        
+                        reject(error)
                         
                     }
-                    catch {
-                        
-                        completion(
-                            .failure(error)
-                        )
-                        
-                    }
-                    
-                case .failure(let error):
-                    
-                    completion(
-                        .failure(error)
-                    )
                     
                 }
                 
             }
-            
-        }
-        catch {
-            
-            completion(
-                .failure(error)
-            )
+            catch {
+                
+                reject(error)
+                
+            }
             
         }
         
+        return promise
+        
     }
-    
+        
 }

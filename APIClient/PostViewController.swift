@@ -24,10 +24,17 @@ public final class PostViewController: UIViewController {
     public final override func viewDidLoad() {
         super.viewDidLoad()
         
-        client.readPost { result in
-            
-            print(result)
-            
+        client
+            .readPost()
+            .then { post in
+                
+                print(post)
+                
+        }
+            .catch { error in
+         
+                print(error)
+                
         }
         
     }
