@@ -20,31 +20,18 @@ extension APIClient: PostAPIClient {
                 
                 let endpoint = try self.router.makeURLRequest()
                 
-                self.httpClient.request(endpoint) { result in
-                    
-                    switch result {
+                self.httpClient.request(endpoint)
+                    .then { json in
                         
-                    case .success(let json):
+                        let post = try Post(json: json)
                         
-                        do {
-                            
-                            let post = try Post(json: json)
-                            
-                            fulfill(post)
-                            
-                        }
-                        catch {
-                            
-                            reject(error)
-                            
-                        }
+                        fulfill(post)
                         
-                    case .failure(let error):
+                    }
+                    .catch { error in
                         
                         reject(error)
                         
-                    }
-                    
                 }
                 
             }
@@ -59,5 +46,5 @@ extension APIClient: PostAPIClient {
         return promise
         
     }
-        
+    
 }

@@ -25,7 +25,7 @@ public typealias HTTPMethod = String
 extension APIRouter: Router {
     
     public static var baseUrl: URL {
-            
+        
         return URL(string: "https://jsonplaceholder.typicode.com")!
         
     }
@@ -57,7 +57,7 @@ extension APIRouter: Router {
     public func makeURLRequest() throws -> URLRequest {
         
         switch self {
-        
+            
         case .readPost:
             
             let url = APIRouter.baseUrl.appendingPathComponent(path)
