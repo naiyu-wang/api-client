@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27F85B451F8E53D10082F0C6 /* Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F85B441F8E53D10082F0C6 /* Hydra.framework */; };
+		27F85B461F8E53D10082F0C6 /* Hydra.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27F85B441F8E53D10082F0C6 /* Hydra.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B05E2D1E1F850620002247A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E2D1D1F850620002247A3 /* AppDelegate.swift */; };
 		B05E2D201F850620002247A3 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E2D1F1F850620002247A3 /* PostViewController.swift */; };
 		B05E2D231F850620002247A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B05E2D211F850620002247A3 /* Main.storyboard */; };
@@ -38,7 +40,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		27F85B471F8E53D10082F0C6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27F85B461F8E53D10082F0C6 /* Hydra.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		27F85B441F8E53D10082F0C6 /* Hydra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hydra.framework; path = Carthage/Build/iOS/Hydra.framework; sourceTree = "<group>"; };
+		27F85B491F8E54350082F0C6 /* Hydra.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Hydra.framework.dSYM; path = Carthage/Build/iOS/Hydra.framework.dSYM; sourceTree = "<group>"; };
 		B05E2D1A1F850620002247A3 /* APIClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APIClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B05E2D1D1F850620002247A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B05E2D1F1F850620002247A3 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27F85B451F8E53D10082F0C6 /* Hydra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +104,8 @@
 		B05E2D111F850620002247A3 = {
 			isa = PBXGroup;
 			children = (
+				27F85B491F8E54350082F0C6 /* Hydra.framework.dSYM */,
+				27F85B441F8E53D10082F0C6 /* Hydra.framework */,
 				B05E2D1C1F850620002247A3 /* APIClient */,
 				B05E2D391F85086F002247A3 /* APIClientTests */,
 				B05E2D1B1F850620002247A3 /* Products */,
@@ -185,6 +206,8 @@
 				B05E2D161F850620002247A3 /* Sources */,
 				B05E2D171F850620002247A3 /* Frameworks */,
 				B05E2D181F850620002247A3 /* Resources */,
+				27F85B471F8E53D10082F0C6 /* Embed Frameworks */,
+				27F85B4B1F8E548B0082F0C6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -273,6 +296,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27F85B4B1F8E548B0082F0C6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Hydra.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Hydra.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B05E2D161F850620002247A3 /* Sources */ = {
@@ -448,6 +489,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5CE6946X84;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = APIClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinyworld.APIClient;
@@ -463,6 +508,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5CE6946X84;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = APIClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinyworld.APIClient;
